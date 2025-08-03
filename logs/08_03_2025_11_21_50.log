@@ -1,0 +1,2 @@
+{"session_id": "session_20250803_055150_0cb97407", "session_path": "/home/prabhat/Documents/document_portal/data/document_analysis/session_20250803_055150_0cb97407", "timestamp": "2025-08-03T05:51:50.606403Z", "level": "info", "event": "PDFHandler initialized"}
+{"timestamp": "2025-08-03T05:51:50.606757Z", "level": "error", "event": "Error saving PDF: [Errno 2] No such file or directory: 'C:\\\\\\\\Users\\\\\\\\sunny\\\\\\\\document_portal\\\\\\\\data\\\\\\\\document_analysis\\\\\\\\sample.pdf'"}
