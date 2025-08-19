@@ -1,4 +1,10 @@
-venv
+
+
+env
 .env
+document_portal.egg-info
 venv/
-archive/
+__pycache__/
+logs/
+*.pyc
+faiss_index/
