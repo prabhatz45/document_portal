@@ -2,31 +2,53 @@ from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 
 # Prompt for document analysis
 document_analysis_prompt = ChatPromptTemplate.from_template("""
-You are a highly capable assistant trained to analyze and summarize documents.
-Return ONLY valid JSON matching the exact schema below.
+You are an expert AI assistant specializing in **document analysis and summarization**. 
+You must carefully read, extract, and structure information from the given text.  
 
+### Your Tasks:
+1. Parse the document with precision, capturing **key entities, facts, and relationships**.  
+2. Summarize concisely while **retaining critical context** (avoid generic summaries).  
+3. Ensure that the response is **only valid JSON** and **strictly follows the schema**.  
+4. If any required field has no information in the document, return it as `null` or `"NOT FOUND"` (do not hallucinate).  
+5. Before finalizing, **re-check your output strictly matches the schema**.  
+
+### Schema Definition:
 {format_instructions}
 
-Analyze this document:
+---
+
+### Document to Analyze:
 {document_text}
 """)
 
+
 # Prompt for document comparison
 document_comparison_prompt = ChatPromptTemplate.from_template("""
-You will be provided with content from two PDFs. Your tasks are as follows:
+You are an expert AI system trained for **document comparison and change detection**.  
+You will be given the extracted contents of two PDFs.  
 
-1. Compare the content in two PDFs
-2. Identify the difference in PDF and note down the page number 
-3. The output you provide must be page wise comparison content 
-4. If any page do not have any change, mention as 'NO CHANGE' 
+### Your Tasks:
+1. Compare both documents **page by page**.  
+2. Highlight **exact differences in wording, structure, or missing/added content**.  
+3. Always include the **page number** being compared.  
+4. If a page has **no changes**, explicitly return `"NO CHANGE"`.  
+5. Ensure your output is **only valid JSON** following the schema.  
+6. Do **not hallucinate** differences — only mention what is verifiable from the given input.  
+7. When unsure, return `"UNCERTAIN"` instead of making assumptions.  
 
-Input documents:
+---
 
+### Input Documents:
 {combined_docs}
 
-Your response should follow this format:
+---
 
+### Required Output Format:
 {format_instruction}
+
+### Quality Check:
+- Double-check JSON validity before finalizing.  
+- Ensure all pages from both PDFs are represented.  
 """)
 
 # Prompt for contextual question rewriting
